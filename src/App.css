@@ -50,5 +50,20 @@
   flex-direction: row;
   align-content: space-between;
   justify-content: space-between;
-  width: 18%;
+  width: 21%;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90%;
+}
+
+.four-foundation {
+  margin-right: 1%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 120%;
 }
