@@ -1,11 +1,17 @@
 import React, { Component } from "react";
-import Spade from "./Spade";
+import Spade from "./suit/Spade";
+import Diamond from "./suit/Diamond";
+import Clubs from "./suit/Clubs";
+import Hearts from "./suit/Hearts";
 
 class Pile extends Component {
   constructor(props) {
     super(props);
     this.suits = {
-      spades: new Spade()
+      spades: new Spade(),
+      diamonds: new Diamond(),
+      clubs: new Clubs(),
+      hearts: new Hearts()
     };
   }
 
@@ -13,6 +19,14 @@ class Pile extends Component {
     return (
       <div className="card face-down-card" onClick={this.putCard.bind(this)} />
     );
+  }
+
+  getAllCardsOfSuit(suit) {
+    let cards = [];
+    for (let i = 1; i <= 10; i++) {
+      cards.push(this.suits[suit].getCard(i));
+    }
+    return cards;
   }
 
   getRandomNumber() {
