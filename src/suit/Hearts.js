@@ -12,6 +12,28 @@ class Hearts extends Component {
       />
     );
   }
+
+  getAllFaceCards() {
+    return [this.getJoker(), this.getQueen(), this.getKing()];
+  }
+
+  getKing() {
+    return (
+      <Card key="K" number="K" symbol="&#9829;" classes={"card red-cards"} />
+    );
+  }
+
+  getQueen() {
+    return (
+      <Card key="Q" number="Q" symbol="&#9829;" classes={"card red-cards"} />
+    );
+  }
+
+  getJoker() {
+    return (
+      <Card key="J" number="J" symbol="&#9829;" classes={"card red-cards"} />
+    );
+  }
 }
 
 export default Hearts;
