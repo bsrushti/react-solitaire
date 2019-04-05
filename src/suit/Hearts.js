@@ -2,13 +2,20 @@ import React, { Component } from "react";
 import Card from "./Card";
 
 class Hearts extends Component {
+  drag(event) {
+    event.dataTransfer.setData("card", event.target.id);
+  }
+
   getCard(number) {
     return (
       <Card
+        id={`hearts_` + number}
         key={number}
         number={number}
         symbol="&#9829;"
         classes={"card red-cards"}
+        onDragStart={this.drag.bind(this)}
+        draggable={true}
       />
     );
   }
@@ -19,19 +26,43 @@ class Hearts extends Component {
 
   getKing() {
     return (
-      <Card key="K" number="K" symbol="&#9829;" classes={"card red-cards"} />
+      <Card
+        id={`hearts_K`}
+        key="K"
+        number="K"
+        symbol="&#9829;"
+        classes={"card red-cards"}
+        onDragStart={this.drag.bind(this)}
+        draggable={true}
+      />
     );
   }
 
   getQueen() {
     return (
-      <Card key="Q" number="Q" symbol="&#9829;" classes={"card red-cards"} />
+      <Card
+        id={`hearts_Q`}
+        key="Q"
+        number="Q"
+        symbol="&#9829;"
+        classes={"card red-cards"}
+        onDragStart={this.drag.bind(this)}
+        draggable={true}
+      />
     );
   }
 
   getJoker() {
     return (
-      <Card key="J" number="J" symbol="&#9829;" classes={"card red-cards"} />
+      <Card
+        id={`hearts_J`}
+        key="J"
+        number="J"
+        symbol="&#9829;"
+        classes={"card red-cards"}
+        onDragStart={this.drag.bind(this)}
+        draggable={true}
+      />
     );
   }
 }

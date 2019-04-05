@@ -54,7 +54,7 @@ class Pile extends Component {
   }
 
   getRandomNumber() {
-    return Math.floor(Math.random() * 52 + 1);
+    return Math.floor(Math.random() * 52);
   }
 
   getOneCard() {
