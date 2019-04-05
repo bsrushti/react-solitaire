@@ -1,9 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import Card from "./Card";
 
-class Diamond extends Component {
-  constructor(props) {
-    super(props);
+class Diamond {
+  constructor() {
     this.class = "card red-cards ";
   }
 

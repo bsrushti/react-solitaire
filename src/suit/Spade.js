@@ -1,9 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import Card from "./Card";
 
-class Spade extends Component {
-  constructor(props) {
-    super(props);
+class Spade {
+  constructor() {
     this.class = "card ";
   }
 

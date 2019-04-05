@@ -42,7 +42,7 @@ class Foundation extends Component {
     );
     const key = event.target.id;
     this.setState({ [key]: pileCard });
-    this.props.updateCard(<Card id="pile-card" classes="card" />);
+    this.props.updateCard();
   }
 
   allowDrop(event) {

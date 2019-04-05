@@ -1,13 +1,11 @@
-import { Component } from "react";
 import lodash from "lodash";
 import Spade from "./suit/Spade";
 import Diamond from "./suit/Diamond";
 import Clubs from "./suit/Clubs";
 import Hearts from "./suit/Hearts";
 
-class Deck extends Component {
-  constructor(props) {
-    super(props);
+class Deck {
+  constructor() {
     this.suits = {
       spades: new Spade(),
       diamonds: new Diamond(),

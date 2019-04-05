@@ -1,9 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import Card from "./Card";
 
-class Clubs extends Component {
-  constructor(props) {
-    super(props);
+class Clubs {
+  constructor() {
     this.class = "card";
   }
   drag(event) {

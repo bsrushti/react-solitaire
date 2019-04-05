@@ -9,6 +9,7 @@ class Game extends Component {
   constructor(props) {
     super(props);
     this.deck = new Deck();
+    this.drawnCards = [];
     this.pileCards = this.deck.getPileCards();
     this.state = {
       recent_drawn_card: <Card id="pile-card" classes="card" />
@@ -16,7 +17,9 @@ class Game extends Component {
   }
 
   getOneCard() {
-    this.setState({ recent_drawn_card: this.pileCards.pop() });
+    let card = this.pileCards.pop();
+    this.drawnCards.push(card);
+    this.setState({ recent_drawn_card: card });
   }
 
   renderPile() {
@@ -27,8 +30,13 @@ class Game extends Component {
     return <Foundation updateCard={this.updateRecentDrawnCards.bind(this)} />;
   }
 
-  updateRecentDrawnCards(state) {
-    this.setState({ recent_drawn_card: state });
+  updateRecentDrawnCards() {
+    this.updateDrawnCards();
+    this.setState({ recent_drawn_card: this.drawnCards.pop() });
+  }
+
+  updateDrawnCards() {
+    this.drawnCards.pop();
   }
 
   renderWastePiles() {
