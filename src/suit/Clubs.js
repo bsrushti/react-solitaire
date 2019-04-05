@@ -2,8 +2,16 @@ import React, { Component } from "react";
 import Card from "./Card";
 
 class Clubs extends Component {
+  constructor(props) {
+    super(props);
+    this.class = "card";
+  }
   drag(event) {
     event.dataTransfer.setData("card", event.target.id);
+  }
+
+  addClass(className) {
+    this.class += className;
   }
 
   getCard(number) {
@@ -13,7 +21,7 @@ class Clubs extends Component {
         key={`club_` + number}
         number={number}
         symbol="&#9827;"
-        classes={"card"}
+        classes={this.class}
         onDragStart={this.drag.bind(this)}
         draggable={true}
       />
@@ -31,7 +39,7 @@ class Clubs extends Component {
         key={`club_K`}
         number="K"
         symbol="&#9827;"
-        classes={"card"}
+        classes={this.class}
         onDragStart={this.drag.bind(this)}
         draggable={true}
       />
@@ -45,7 +53,7 @@ class Clubs extends Component {
         key={`club_Q`}
         number="Q"
         symbol="&#9827;"
-        classes={"card"}
+        classes={this.class}
         onDragStart={this.drag.bind(this)}
         draggable={true}
       />
@@ -59,7 +67,7 @@ class Clubs extends Component {
         key={`club_J`}
         number="J"
         symbol="&#9827;"
-        classes={"card"}
+        classes={this.class}
         onDragStart={this.drag.bind(this)}
         draggable={true}
       />

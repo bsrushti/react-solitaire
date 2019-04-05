@@ -2,18 +2,21 @@ import React, { Component } from "react";
 import Pile from "./Pile";
 import Card from "./suit/Card";
 import Foundation from "./Foundation";
+import WastePiles from "./WastePiles";
+import Deck from "./Deck";
 
 class Game extends Component {
   constructor(props) {
     super(props);
-    this.pile = new Pile();
+    this.deck = new Deck();
+    this.pileCards = this.deck.getPileCards();
     this.state = {
       recent_drawn_card: <Card id="pile-card" classes="card" />
     };
   }
 
   getOneCard() {
-    this.setState({ recent_drawn_card: this.pile.getOneCard() });
+    this.setState({ recent_drawn_card: this.pileCards.pop() });
   }
 
   renderPile() {
@@ -28,16 +31,23 @@ class Game extends Component {
     this.setState({ recent_drawn_card: state });
   }
 
+  renderWastePiles() {
+    return <WastePiles cards={this.deck.getWastePileCards()} />;
+  }
+
   render() {
     return (
       <div className="container">
-        <div className="pile">
-          <div title="pile">{this.renderPile()}</div>
-          <div title="face-up-card-from-pile">
-            {this.state.recent_drawn_card}
+        <div className="row-one">
+          <div className="pile">
+            <div title="pile">{this.renderPile()}</div>
+            <div title="face-up-card-from-pile">
+              {this.state.recent_drawn_card}
+            </div>
           </div>
+          <div>{this.renderFoundation()}</div>
         </div>
-        <div>{this.renderFoundation()}</div>
+        <div>{this.renderWastePiles()}</div>
       </div>
     );
   }

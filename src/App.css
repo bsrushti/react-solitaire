@@ -34,6 +34,7 @@
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
+  background-color: whitesmoke;
 }
 
 .symbol {
@@ -54,10 +55,16 @@
 
 .container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   width: 90%;
-  margin-left:2%;
+  margin-left: 2%;
+}
+
+.row-one {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .four-foundation {
@@ -65,4 +72,24 @@
   flex-direction: row;
   justify-content: space-between;
   width: 120%;
+}
+
+.waste-piles {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 auto;
+  margin-top: 5%;
+  width: 80%;
+}
+
+.waste-pile {
+  width: 105px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.margin-negative {
+  margin-top: -27px;
 }
