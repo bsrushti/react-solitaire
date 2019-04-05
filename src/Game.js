@@ -40,10 +40,8 @@ class Game extends Component {
       <div className="container">
         <div className="row-one">
           <div className="pile">
-            <div title="pile">{this.renderPile()}</div>
-            <div title="face-up-card-from-pile">
-              {this.state.recent_drawn_card}
-            </div>
+            {this.renderPile() /* {pile} */}
+            {this.state.recent_drawn_card /* {drawn-card-from-pile} */}
           </div>
           <div>{this.renderFoundation()}</div>
         </div>

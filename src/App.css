@@ -1,3 +1,7 @@
+body {
+  background-color: darkgreen;
+}
+
 .App {
   width: 100%;
   height: 100%;
@@ -28,7 +32,7 @@
   width: 105px;
   height: 160px;
   border: 2px solid black;
-  border-radius: 3px;
+  border-radius: 5px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -42,7 +46,7 @@
 }
 
 .face-down-card {
-  background-color: darkgray;
+  background-color: gray;
 }
 
 .pile {
@@ -79,17 +83,16 @@
   flex-direction: row;
   justify-content: space-between;
   margin: 0 auto;
-  margin-top: 5%;
+  margin-top: 15%;
   width: 80%;
 }
 
 .waste-pile {
   width: 105px;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-direction: column;
 }
 
-.margin-negative {
-  margin-top: -27px;
+.waste-pile-card {
+  margin-top: -90px;
 }
