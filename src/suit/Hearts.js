@@ -10,7 +10,7 @@ class Hearts extends Component {
     return (
       <Card
         id={`hearts_` + number}
-        key={number}
+        key={`hearts_` + number}
         number={number}
         symbol="&#9829;"
         classes={"card red-cards"}
@@ -28,7 +28,7 @@ class Hearts extends Component {
     return (
       <Card
         id={`hearts_K`}
-        key="K"
+        key={`hearts_K`}
         number="K"
         symbol="&#9829;"
         classes={"card red-cards"}
@@ -42,7 +42,7 @@ class Hearts extends Component {
     return (
       <Card
         id={`hearts_Q`}
-        key="Q"
+        key={`hearts_Q`}
         number="Q"
         symbol="&#9829;"
         classes={"card red-cards"}
@@ -56,7 +56,7 @@ class Hearts extends Component {
     return (
       <Card
         id={`hearts_J`}
-        key="J"
+        key={`hearts_J`}
         number="J"
         symbol="&#9829;"
         classes={"card red-cards"}

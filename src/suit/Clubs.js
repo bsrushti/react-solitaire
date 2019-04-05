@@ -10,7 +10,7 @@ class Clubs extends Component {
     return (
       <Card
         id={`club_` + number}
-        key={number}
+        key={`club_` + number}
         number={number}
         symbol="&#9827;"
         classes={"card"}
@@ -28,7 +28,7 @@ class Clubs extends Component {
     return (
       <Card
         id={`club_K`}
-        key="K"
+        key={`club_K`}
         number="K"
         symbol="&#9827;"
         classes={"card"}
@@ -42,7 +42,7 @@ class Clubs extends Component {
     return (
       <Card
         id={`club_Q`}
-        key="Q"
+        key={`club_Q`}
         number="Q"
         symbol="&#9827;"
         classes={"card"}
@@ -56,7 +56,7 @@ class Clubs extends Component {
     return (
       <Card
         id={`club_J`}
-        key="J"
+        key={`club_J`}
         number="J"
         symbol="&#9827;"
         classes={"card"}

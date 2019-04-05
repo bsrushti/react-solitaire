@@ -10,7 +10,7 @@ class Diamond extends Component {
     return (
       <Card
         id={`diamond_` + number}
-        key={number}
+        key={`diamond_` + number}
         number={number}
         symbol="&#9830;"
         classes={"card red-cards"}
@@ -28,7 +28,7 @@ class Diamond extends Component {
     return (
       <Card
         id={`diamond_K`}
-        key="K"
+        key={`diamond_K`}
         number="K"
         symbol="&#9830;"
         classes={"card red-cards"}
@@ -42,7 +42,7 @@ class Diamond extends Component {
     return (
       <Card
         id={`diamond_Q`}
-        key="Q"
+        key={`diamond_Q`}
         number="Q"
         symbol="&#9830;"
         classes={"card red-cards"}
@@ -55,8 +55,8 @@ class Diamond extends Component {
   getJoker() {
     return (
       <Card
-        id={`diamond_K`}
-        key="J"
+        id={`diamond_J`}
+        key={`diamond_J`}
         number="J"
         symbol="&#9830;"
         classes={"card red-cards"}

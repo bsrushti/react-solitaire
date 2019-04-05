@@ -10,7 +10,7 @@ class Spade extends Component {
     return (
       <Card
         id={`spade_` + number}
-        key={number}
+        key={`spade_` + number}
         number={number}
         symbol="&#9824;"
         classes={"card"}
@@ -28,7 +28,7 @@ class Spade extends Component {
     return (
       <Card
         id={`spade_K`}
-        key="K"
+        key={`spade_K`}
         number="K"
         symbol="&#9824;"
         classes={"card"}
@@ -42,7 +42,7 @@ class Spade extends Component {
     return (
       <Card
         id={`spade_Q`}
-        key="Q"
+        key={`spade_Q`}
         number="Q"
         symbol="&#9824;"
         classes={"card"}
@@ -56,7 +56,7 @@ class Spade extends Component {
     return (
       <Card
         id={`spade_J`}
-        key="J"
+        key={`spade_J`}
         number="J"
         symbol="&#9824;"
         classes={"card"}

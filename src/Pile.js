@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import lodash from "lodash";
 import Spade from "./suit/Spade";
 import Diamond from "./suit/Diamond";
 import Clubs from "./suit/Clubs";
@@ -53,13 +54,11 @@ class Pile extends Component {
     return cards;
   }
 
-  getRandomNumber() {
-    return Math.floor(Math.random() * 52);
-  }
-
   getOneCard() {
-    let number = this.getRandomNumber();
-    return this.state.deck[number];
+    let deck = lodash.shuffle(this.state.deck);
+    let card = deck.pop();
+    this.state.deck = deck; //need to setState instead
+    return card;
   }
 
   render() {
