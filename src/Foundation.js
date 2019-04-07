@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Card from "./suit/Card";
+import Pile from "./Pile";
 
 class Foundation extends Component {
   constructor(props) {
@@ -25,6 +26,7 @@ class Foundation extends Component {
 
   drop(event) {
     let card = document.getElementById(event.dataTransfer.getData("card"));
+    if (!event.target.id) event.target = event.target.parentElement;
     let foundation = document.getElementById(event.target.id);
     foundation.innerHTML = "";
     let id = card.id;
@@ -33,8 +35,10 @@ class Foundation extends Component {
     let symbol = card.childNodes[1].innerText;
     let pileCard = (
       <Card
-        id={id}
+        id={event.target.id}
         key={symbol + number}
+        onDrop={this.drop.bind(this)}
+        onDragOver={this.allowDrop.bind(this)}
         number={number}
         symbol={symbol}
         classes={className}
