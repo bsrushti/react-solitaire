@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Card from "./suit/Card";
-import Pile from "./Pile";
 
 class Foundation extends Component {
   constructor(props) {
@@ -15,8 +14,8 @@ class Foundation extends Component {
 
   getFoundation(id) {
     return (
-      <Card
-        classes="card"
+      <div
+        className="card"
         onDrop={this.drop.bind(this)}
         onDragOver={this.allowDrop.bind(this)}
         id={id}
@@ -28,8 +27,8 @@ class Foundation extends Component {
     let card = document.getElementById(event.dataTransfer.getData("card"));
     if (!event.target.id) event.target = event.target.parentElement;
     let foundation = document.getElementById(event.target.id);
+    if (card.id.match(/A/) == null && foundation.innerHTML == "") return;
     foundation.innerHTML = "";
-    let id = card.id;
     let className = card.className;
     let number = card.childNodes[0].innerText;
     let symbol = card.childNodes[1].innerText;
