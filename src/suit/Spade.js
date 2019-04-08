@@ -32,11 +32,25 @@ class Spade {
     return [this.getJoker(), this.getQueen(), this.getKing()];
   }
 
+  getAce() {
+    return (
+      <Card
+        id={`spade_1`}
+        key={`spade_1`}
+        number="A"
+        symbol="&#9824;"
+        classes={this.class}
+        onDragStart={this.drag.bind(this)}
+        draggable={true}
+      />
+    );
+  }
+
   getKing() {
     return (
       <Card
-        id={`spade_K`}
-        key={`spade_K`}
+        id={`spade_13`}
+        key={`spade_13`}
         number="K"
         symbol="&#9824;"
         classes={this.class}
@@ -49,8 +63,8 @@ class Spade {
   getQueen() {
     return (
       <Card
-        id={`spade_Q`}
-        key={`spade_Q`}
+        id={`spade_12`}
+        key={`spade_12`}
         number="Q"
         symbol="&#9824;"
         classes={this.class}
@@ -63,8 +77,8 @@ class Spade {
   getJoker() {
     return (
       <Card
-        id={`spade_J`}
-        key={`spade_J`}
+        id={`spade_11`}
+        key={`spade_11`}
         number="J"
         symbol="&#9824;"
         classes={this.class}

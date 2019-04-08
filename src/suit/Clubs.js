@@ -31,11 +31,25 @@ class Clubs {
     return [this.getJoker(), this.getQueen(), this.getKing()];
   }
 
+  getAce() {
+    return (
+      <Card
+        id={`club_1`}
+        key={`club_1`}
+        number="A"
+        symbol="&#9827;"
+        classes={this.class}
+        onDragStart={this.drag.bind(this)}
+        draggable={true}
+      />
+    );
+  }
+
   getKing() {
     return (
       <Card
-        id={`club_K`}
-        key={`club_K`}
+        id={`club_13`}
+        key={`club_13`}
         number="K"
         symbol="&#9827;"
         classes={this.class}
@@ -48,8 +62,8 @@ class Clubs {
   getQueen() {
     return (
       <Card
-        id={`club_Q`}
-        key={`club_Q`}
+        id={`club_12`}
+        key={`club_12`}
         number="Q"
         symbol="&#9827;"
         classes={this.class}
@@ -62,8 +76,8 @@ class Clubs {
   getJoker() {
     return (
       <Card
-        id={`club_J`}
-        key={`club_J`}
+        id={`club_11`}
+        key={`club_11`}
         number="J"
         symbol="&#9827;"
         classes={this.class}

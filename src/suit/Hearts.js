@@ -5,7 +5,7 @@ class Hearts {
   constructor() {
     this.class = "card red-cards ";
   }
-  
+
   drag(event) {
     event.dataTransfer.setData("card", event.target.id);
   }
@@ -32,11 +32,25 @@ class Hearts {
     return [this.getJoker(), this.getQueen(), this.getKing()];
   }
 
+  getAce() {
+    return (
+      <Card
+        id={`hearts_1`}
+        key={`hearts_1`}
+        number="A"
+        symbol="&#9829;"
+        classes={this.class}
+        onDragStart={this.drag.bind(this)}
+        draggable={true}
+      />
+    );
+  }
+
   getKing() {
     return (
       <Card
-        id={`hearts_K`}
-        key={`hearts_K`}
+        id={`hearts_13`}
+        key={`hearts_13`}
         number="K"
         symbol="&#9829;"
         classes={this.class}
@@ -49,8 +63,8 @@ class Hearts {
   getQueen() {
     return (
       <Card
-        id={`hearts_Q`}
-        key={`hearts_Q`}
+        id={`hearts_12`}
+        key={`hearts_12`}
         number="Q"
         symbol="&#9829;"
         classes={this.class}
@@ -63,8 +77,8 @@ class Hearts {
   getJoker() {
     return (
       <Card
-        id={`hearts_J`}
-        key={`hearts_J`}
+        id={`hearts_11`}
+        key={`hearts_11`}
         number="J"
         symbol="&#9829;"
         classes={this.class}

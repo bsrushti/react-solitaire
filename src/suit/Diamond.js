@@ -32,11 +32,25 @@ class Diamond {
     return [this.getJoker(), this.getQueen(), this.getKing()];
   }
 
+  getAce() {
+    return (
+      <Card
+        id={`diamond_1`}
+        key={`diamond_1`}
+        number="A"
+        symbol="&#9830;"
+        classes={this.class}
+        onDragStart={this.drag.bind(this)}
+        draggable={true}
+      />
+    );
+  }
+
   getKing() {
     return (
       <Card
-        id={`diamond_K`}
-        key={`diamond_K`}
+        id={`diamond_13`}
+        key={`diamond_13`}
         number="K"
         symbol="&#9830;"
         classes={this.class}
@@ -49,8 +63,8 @@ class Diamond {
   getQueen() {
     return (
       <Card
-        id={`diamond_Q`}
-        key={`diamond_Q`}
+        id={`diamond_12`}
+        key={`diamond_12`}
         number="Q"
         symbol="&#9830;"
         classes={this.class}
@@ -63,8 +77,8 @@ class Diamond {
   getJoker() {
     return (
       <Card
-        id={`diamond_J`}
-        key={`diamond_J`}
+        id={`diamond_11`}
+        key={`diamond_11`}
         number="J"
         symbol="&#9830;"
         classes={this.class}

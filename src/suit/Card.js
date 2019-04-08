@@ -11,13 +11,15 @@ class Card extends Component {
       onDrop: props.onDrop,
       onDragOver: props.onDragOver,
       number: props.number,
-      symbol: props.symbol
+      symbol: props.symbol,
+      title: props.title
     };
   }
 
   render() {
     return (
       <div
+        title={this.state.title}
         id={this.state.id}
         className={this.state.classes}
         draggable={this.state.draggable}

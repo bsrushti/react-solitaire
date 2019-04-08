@@ -33,7 +33,7 @@ class Deck {
 
   getAllCardsOfSuit(suit) {
     let cards = [];
-    let aceCard = this.suits[suit].getCard("A");
+    let aceCard = this.suits[suit].getAce();
     let numberCards = this.getNumberCards(suit);
     let faceCards = this.suits[suit].getAllFaceCards();
     cards.push(aceCard);

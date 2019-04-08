@@ -12,40 +12,69 @@ class Foundation extends Component {
     };
   }
 
-  getFoundation(id) {
+  getFoundation(title) {
     return (
       <div
         className="card"
         onDrop={this.drop.bind(this)}
         onDragOver={this.allowDrop.bind(this)}
-        id={id}
+        id={title}
+        title={title}
       />
     );
   }
 
-  drop(event) {
-    let card = document.getElementById(event.dataTransfer.getData("card"));
-    if (!event.target.id) event.target = event.target.parentElement;
-    let foundation = document.getElementById(event.target.id);
-    if (card.id.match(/A/) == null && foundation.innerHTML == "") return;
-    foundation.innerHTML = "";
-    let className = card.className;
+  getCardNumberAndSymbol(card) {
     let number = card.childNodes[0].innerText;
     let symbol = card.childNodes[1].innerText;
-    let pileCard = (
+    return { number, symbol };
+  }
+
+  getCardRankAndSuit(card) {
+    const cardSuit = card.id.split("_")[0];
+    const cardRank = card.id.split("_")[1];
+    return { cardSuit, cardRank };
+  }
+
+  isNotValid(card, foundation) {
+    const { cardSuit, cardRank } = this.getCardRankAndSuit(card);
+    const stackedCardSuit = foundation.id.split("_")[0];
+    const stackedCardRank = foundation.id.split("_")[1];
+    return (
+      cardSuit != stackedCardSuit &&
+      cardRank != stackedCardRank + 1 &&
+      foundation.innerHTML
+    );
+  }
+
+  drop(event) {
+    const card = document.getElementById(event.dataTransfer.getData("card"));
+    const { cardRank } = this.getCardRankAndSuit(card);
+    if (!event.target.id) event.target = event.target.parentElement;
+    let foundation = document.getElementById(event.target.id);
+    if (this.isNotValid(card, foundation)) return;
+    if (cardRank != 1 && foundation.innerHTML == "") return;
+    let title = event.target.title;
+    let pileCard = this.getRecentStackedCard(title, card);
+    const key = event.target.title;
+    this.setState({ [key]: pileCard });
+    this.props.updateCard();
+  }
+  
+  getRecentStackedCard(title, card) {
+    const { number, symbol } = this.getCardNumberAndSymbol(card);
+    return (
       <Card
-        id={event.target.id}
+        title={title}
+        id={card.id}
         key={symbol + number}
         onDrop={this.drop.bind(this)}
         onDragOver={this.allowDrop.bind(this)}
         number={number}
         symbol={symbol}
-        classes={className}
+        classes={card.className}
       />
     );
-    const key = event.target.id;
-    this.setState({ [key]: pileCard });
-    this.props.updateCard();
   }
 
   allowDrop(event) {
