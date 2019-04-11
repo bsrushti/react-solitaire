@@ -19,7 +19,7 @@ class Foundation extends Component {
         onDrop={this.drop.bind(this)}
         onDragOver={this.allowDrop.bind(this)}
         id={title}
-        title={title}
+        data-associate_foundation={title}
       />
     );
   }
@@ -27,10 +27,12 @@ class Foundation extends Component {
   getCardNumberAndSymbol(card) {
     let number = card.childNodes[0].innerText;
     let symbol = card.childNodes[1].innerText;
+    console.log(number, " ", symbol);
     return { number, symbol };
   }
 
   getCardRankAndSuit(card) {
+    card.id = card.id.split(" ")[0];
     const cardSuit = card.id.split("_")[0];
     const cardRank = card.id.split("_")[1];
     return { cardSuit, cardRank };
@@ -50,22 +52,24 @@ class Foundation extends Component {
   drop(event) {
     const card = document.getElementById(event.dataTransfer.getData("card"));
     const { cardRank } = this.getCardRankAndSuit(card);
-    if (!event.target.id) event.target = event.target.parentElement;
+    if (!event.target.dataset.associate_foundation)
+      event.target = event.target.parentElement;
+    const foundationName = event.target.dataset.associate_foundation;
     let foundation = document.getElementById(event.target.id);
     if (this.isNotValid(card, foundation)) return;
     if (cardRank != 1 && foundation.innerHTML == "") return;
-    let title = event.target.title;
-    let pileCard = this.getRecentStackedCard(title, card);
-    const key = event.target.title;
+    let pileCard = this.getRecentStackedCard(foundationName, card);
+    const key = foundationName;
     this.setState({ [key]: pileCard });
     this.props.updateCard();
   }
-  
-  getRecentStackedCard(title, card) {
+
+  getRecentStackedCard(foundationName, card) {
+    card.className = card.className.replace("waste-pile-card", " ");
     const { number, symbol } = this.getCardNumberAndSymbol(card);
     return (
       <Card
-        title={title}
+        associate_foundation={foundationName}
         id={card.id}
         key={symbol + number}
         onDrop={this.drop.bind(this)}

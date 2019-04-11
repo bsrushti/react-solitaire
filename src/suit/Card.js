@@ -2,7 +2,6 @@ import React, { Component } from "react";
 class Card extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       id: props.id,
       classes: props.classes,
@@ -12,13 +11,15 @@ class Card extends Component {
       onDragOver: props.onDragOver,
       number: props.number,
       symbol: props.symbol,
-      title: props.title
+      title: props.title,
+      associate_foundation: props.associate_foundation
     };
   }
 
   render() {
     return (
       <div
+        data-associate_foundation={this.state.associate_foundation}
         title={this.state.title}
         id={this.state.id}
         className={this.state.classes}
@@ -27,9 +28,15 @@ class Card extends Component {
         onDrop={this.state.onDrop}
         onDragOver={this.state.onDragOver}
       >
-        <div className="header">{this.state.number}</div>
-        <div className="symbol">{this.state.symbol}</div>
-        <div className="footer">{this.state.number}</div>
+        <div className="header" id={this.state.id}>
+          {this.state.number}
+        </div>
+        <div className="symbol" id={this.state.id}>
+          {this.state.symbol}
+        </div>
+        <div className="footer" id={this.state.id}>
+          {this.state.number}
+        </div>
       </div>
     );
   }

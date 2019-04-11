@@ -23,7 +23,7 @@ class Game extends Component {
   }
 
   renderPile() {
-    return <Pile classes={"card face-down-card"} onClick={this.getOneCard.bind(this)} />;
+    return <Pile className={"card face-down-card"} onClick={this.getOneCard.bind(this)} />;
   }
 
   renderFoundation() {

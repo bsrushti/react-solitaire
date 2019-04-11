@@ -5,6 +5,7 @@ class Clubs {
   constructor() {
     this.class = "card";
   }
+  
   drag(event) {
     event.dataTransfer.setData("card", event.target.id);
   }
