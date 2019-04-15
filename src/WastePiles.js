@@ -17,7 +17,16 @@ class WastePiles extends Component {
     };
   }
 
-  getCards(cardId, pileId, pileNumber) {
+  isFaceDownCard(pileId, cardIndex) {
+    return this.state[pileId][cardIndex - 1].props.className.match(
+      /face-down-card/
+    );
+  }
+
+  getCards(card, draggedPileNumber, pileNumber) {
+    if (!draggedPileNumber) return;
+    let cardId = card.id;
+    let pileId = "pile_" + draggedPileNumber;
     let pile = this.state[pileId];
     let cardIndex = 0;
     for (let index = 0; index < pile.length; index++) {
@@ -25,9 +34,14 @@ class WastePiles extends Component {
         cardIndex = index;
       }
     }
-    let draggedCards = pile.slice(cardIndex);
     let pileCards = pile.slice(0, cardIndex);
-    this.setState({ [pileId]: pileCards });
+    if (!cardIndex - 1 < 0 && this.isFaceDownCard(pileId, cardIndex)) {
+      pileCards.pop();
+      let newCard = this.cards.pop();
+      pileCards.push(this.getCard(draggedPileNumber, newCard));
+    }
+    let draggedCards = pile.slice(cardIndex);
+    this.setState({ [pileId]: pileCards.slice() });
     return draggedCards.map(this.getCard.bind(this, pileNumber));
   }
 
@@ -35,11 +49,41 @@ class WastePiles extends Component {
     let droppedPileNumber = event.target.id.split(" ").pop();
     let droppedPileId = "pile_" + droppedPileNumber;
     let card = document.getElementById(event.dataTransfer.getData("card"));
-    let draggedPileNumber = card.id.split(" ").pop();
-    let draggedPileId = "pile_" + draggedPileNumber;
-    let draggedCards = this.getCards(card.id, draggedPileId, droppedPileNumber);
-    draggedCards = this.state[droppedPileId].concat(draggedCards);
-    this.setState({ [droppedPileId]: draggedCards.slice() });
+    let draggedPileNumber = card.id.split(" ")[1];
+    let pileCard = this.state[droppedPileId][
+      this.state[droppedPileId].length - 1
+    ];
+    if (
+      this.isOfSameColor(pileCard, card) ||
+      !this.isRankGreaterThanPileCard(pileCard, card)
+    )
+      return;
+    let draggedCards = this.getCards(
+      card,
+      draggedPileNumber,
+      droppedPileNumber
+    );
+    if (!draggedCards) {
+      draggedCards = this.getCard(droppedPileNumber, card);
+      this.props.updateCard();
+    }
+    let cards = this.state[droppedPileId].concat(draggedCards);
+    this.setState({ [droppedPileId]: cards.slice() });
+  }
+
+  isOfSameColor(pileCard, draggedCard) {
+    return !(
+      (pileCard.props.className.match(/red-cards/) &&
+        !draggedCard.className.match(/red-cards/)) ||
+      (!pileCard.props.className.match(/red-cards/) &&
+        draggedCard.className.match(/red-cards/))
+    );
+  }
+
+  isRankGreaterThanPileCard(pileCard, draggedCard) {
+    const rankOfPileCard = +pileCard.props.id.split(" ")[0].split("_")[1];
+    const rankOfDraggedCard = +draggedCard.id.split(" ")[0].split("_")[1];
+    return rankOfPileCard == (rankOfDraggedCard + 1);
   }
 
   getCardNumberAndSymbol(card) {
@@ -49,15 +93,19 @@ class WastePiles extends Component {
   }
 
   getCard(pileNumber, card) {
+    if (card.props) card = card.props;
+    else {
+      let { number, symbol } = this.getCardNumberAndSymbol(card);
+      card.number = number;
+      card.symbol = symbol;
+    }
     return (
       <Card
-        id={card.props.id + " " + pileNumber}
-        key={card.props.symbol + card.props.number}
-        onDrop={this.drop.bind(this)}
-        onDragOver={this.allowDrop.bind(this)}
-        number={card.props.number}
-        symbol={card.props.symbol}
-        classes={card.props.classes + " waste-pile-card"}
+        id={card.id + " " + pileNumber}
+        key={card.id + " " + pileNumber}
+        number={card.number}
+        symbol={card.symbol}
+        className={card.className + " waste-pile-card"}
         draggable={true}
         onDragStart={this.drag.bind(this)}
       />
@@ -77,8 +125,6 @@ class WastePiles extends Component {
           key={index + 1}
           id={index + 1}
           className="waste-pile "
-          onDrop={this.drop.bind(this)}
-          onDragOver={this.allowDrop}
           value={this.state[pile]}
         />
       );
@@ -116,17 +162,6 @@ class WastePiles extends Component {
     return new Array(number)
       .fill("")
       .map(this.getCardDiv.bind(this, number, card));
-  }
-
-  setPlayableCards() {
-    this.setState({
-      pile_1: this.state.pile_1.splice(
-        this.state.pile_1.length,
-        1,
-        this.cards.pop()
-      )
-    });
-    return;
   }
 
   render() {

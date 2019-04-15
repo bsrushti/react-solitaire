@@ -21,7 +21,7 @@ class Hearts {
         key={`hearts_` + number}
         number={number}
         symbol="&#9829;"
-        classes={this.class}
+        className={this.class}
         onDragStart={this.drag.bind(this)}
         draggable={true}
       />
@@ -39,7 +39,7 @@ class Hearts {
         key={`hearts_1`}
         number="A"
         symbol="&#9829;"
-        classes={this.class}
+        className={this.class}
         onDragStart={this.drag.bind(this)}
         draggable={true}
       />
@@ -53,7 +53,7 @@ class Hearts {
         key={`hearts_13`}
         number="K"
         symbol="&#9829;"
-        classes={this.class}
+        className={this.class}
         onDragStart={this.drag.bind(this)}
         draggable={true}
       />
@@ -67,7 +67,7 @@ class Hearts {
         key={`hearts_12`}
         number="Q"
         symbol="&#9829;"
-        classes={this.class}
+        className={this.class}
         onDragStart={this.drag.bind(this)}
         draggable={true}
       />
@@ -81,7 +81,7 @@ class Hearts {
         key={`hearts_11`}
         number="J"
         symbol="&#9829;"
-        classes={this.class}
+        className={this.class}
         onDragStart={this.drag.bind(this)}
         draggable={true}
       />

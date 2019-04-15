@@ -12,7 +12,7 @@ class Game extends Component {
     this.drawnCards = [];
     this.pileCards = this.deck.getPileCards();
     this.state = {
-      recent_drawn_card: <Card id="pile-card" classes="card" />
+      recent_drawn_card: <Card id="pile-card" className="" />
     };
   }
 
@@ -23,7 +23,12 @@ class Game extends Component {
   }
 
   renderPile() {
-    return <Pile className={"card face-down-card"} onClick={this.getOneCard.bind(this)} />;
+    return (
+      <Pile
+        className={"card face-down-card"}
+        onClick={this.getOneCard.bind(this)}
+      />
+    );
   }
 
   renderFoundation() {
@@ -40,7 +45,12 @@ class Game extends Component {
   }
 
   renderWastePiles() {
-    return <WastePiles cards={this.deck.getWastePileCards()} />;
+    return (
+      <WastePiles
+        cards={this.deck.getWastePileCards()}
+        updateCard={this.updateRecentDrawnCards.bind(this)}
+      />
+    );
   }
 
   render() {

@@ -3,9 +3,9 @@ import Card from "./Card";
 
 class Clubs {
   constructor() {
-    this.class = "card";
+    this.class = "card ";
   }
-  
+
   drag(event) {
     event.dataTransfer.setData("card", event.target.id);
   }
@@ -21,7 +21,7 @@ class Clubs {
         key={`club_` + number}
         number={number}
         symbol="&#9827;"
-        classes={this.class}
+        className={this.class}
         onDragStart={this.drag.bind(this)}
         draggable={true}
       />
@@ -39,7 +39,7 @@ class Clubs {
         key={`club_1`}
         number="A"
         symbol="&#9827;"
-        classes={this.class}
+        className={this.class}
         onDragStart={this.drag.bind(this)}
         draggable={true}
       />
@@ -53,7 +53,7 @@ class Clubs {
         key={`club_13`}
         number="K"
         symbol="&#9827;"
-        classes={this.class}
+        className={this.class}
         onDragStart={this.drag.bind(this)}
         draggable={true}
       />
@@ -67,7 +67,7 @@ class Clubs {
         key={`club_12`}
         number="Q"
         symbol="&#9827;"
-        classes={this.class}
+        className={this.class}
         onDragStart={this.drag.bind(this)}
         draggable={true}
       />
@@ -81,7 +81,7 @@ class Clubs {
         key={`club_11`}
         number="J"
         symbol="&#9827;"
-        classes={this.class}
+        className={this.class}
         onDragStart={this.drag.bind(this)}
         draggable={true}
       />

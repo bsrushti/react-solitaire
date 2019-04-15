@@ -21,7 +21,7 @@ class Spade {
         key={`spade_` + number}
         number={number}
         symbol="&#9824;"
-        classes={this.class}
+        className={this.class}
         onDragStart={this.drag.bind(this)}
         draggable={true}
       />
@@ -39,7 +39,7 @@ class Spade {
         key={`spade_1`}
         number="A"
         symbol="&#9824;"
-        classes={this.class}
+        className={this.class}
         onDragStart={this.drag.bind(this)}
         draggable={true}
       />
@@ -53,7 +53,7 @@ class Spade {
         key={`spade_13`}
         number="K"
         symbol="&#9824;"
-        classes={this.class}
+        className={this.class}
         onDragStart={this.drag.bind(this)}
         draggable={true}
       />
@@ -67,7 +67,7 @@ class Spade {
         key={`spade_12`}
         number="Q"
         symbol="&#9824;"
-        classes={this.class}
+        className={this.class}
         onDragStart={this.drag.bind(this)}
         draggable={true}
       />
@@ -81,7 +81,7 @@ class Spade {
         key={`spade_11`}
         number="J"
         symbol="&#9824;"
-        classes={this.class}
+        className={this.class}
         onDragStart={this.drag.bind(this)}
         draggable={true}
       />

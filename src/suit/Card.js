@@ -4,7 +4,7 @@ class Card extends Component {
     super(props);
     this.state = {
       id: props.id,
-      classes: props.classes,
+      className: props.className,
       draggable: props.draggable,
       onDragStart: props.onDragStart,
       onDrop: props.onDrop,
@@ -22,7 +22,7 @@ class Card extends Component {
         data-associate_foundation={this.state.associate_foundation}
         title={this.state.title}
         id={this.state.id}
-        className={this.state.classes}
+        className={this.state.className}
         draggable={this.state.draggable}
         onDragStart={this.state.onDragStart}
         onDrop={this.state.onDrop}

@@ -48,7 +48,7 @@ class Deck {
   }
 
   getWastePileCards() {
-    let cards = this.deck.splice(25);
+    let cards = this.deck.slice(24);
     return cards;
   }
 }

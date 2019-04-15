@@ -27,7 +27,6 @@ class Foundation extends Component {
   getCardNumberAndSymbol(card) {
     let number = card.childNodes[0].innerText;
     let symbol = card.childNodes[1].innerText;
-    console.log(number, " ", symbol);
     return { number, symbol };
   }
 
@@ -75,10 +74,16 @@ class Foundation extends Component {
         onDrop={this.drop.bind(this)}
         onDragOver={this.allowDrop.bind(this)}
         number={number}
+        draggable={true}
+        onDragStart={this.drag}
         symbol={symbol}
-        classes={card.className}
+        className={card.className}
       />
     );
+  }
+
+  drag(event) {
+    event.dataTransfer.setData("card", event.target.id);
   }
 
   allowDrop(event) {
