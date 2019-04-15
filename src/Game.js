@@ -23,6 +23,10 @@ class Game extends Component {
   }
 
   renderPile() {
+    if (!this.state.recent_drawn_card) {
+      this.pileCards = this.drawnCards.slice().reverse();
+      this.drawnCards = [];
+    }
     return (
       <Pile
         className={"card face-down-card"}
