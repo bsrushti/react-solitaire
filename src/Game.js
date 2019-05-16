@@ -10,6 +10,7 @@ class Game extends Component {
     super(props);
     this.deck = new Deck();
     this.drawnCards = [];
+    this.wastePile = null;
     this.pileCards = this.deck.getPileCards();
     this.state = {
       recent_drawn_card: <Card id="pile-card" className="" />
@@ -36,7 +37,12 @@ class Game extends Component {
   }
 
   renderFoundation() {
-    return <Foundation updateCard={this.updateRecentDrawnCards.bind(this)} />;
+    return (
+      <Foundation
+        updateCard={this.updateRecentDrawnCards.bind(this)}
+        updateWastePile={this.updateWastePile.bind(this)}
+      />
+    );
   }
 
   updateRecentDrawnCards() {
@@ -48,11 +54,16 @@ class Game extends Component {
     this.drawnCards.pop();
   }
 
+  updateWastePile(pileNumber) {
+    this.wastePile.updatePile(pileNumber);
+  }
+
   renderWastePiles() {
     return (
       <WastePiles
         cards={this.deck.getWastePileCards()}
         updateCard={this.updateRecentDrawnCards.bind(this)}
+        ref={instance => (this.wastePile = instance)}
       />
     );
   }

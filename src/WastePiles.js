@@ -67,11 +67,16 @@ class WastePiles extends Component {
       draggedCards = this.getCard(droppedPileNumber, card);
       this.props.updateCard();
     }
+    if (this.state[droppedPileId].length == 0 && card.id.match(/13/))
+      draggedCards = this.draggedCards.concat(
+        this.getCard(droppedPileNumber, card)
+      );
     let cards = this.state[droppedPileId].concat(draggedCards);
     this.setState({ [droppedPileId]: cards.slice() });
   }
 
   isOfSameColor(pileCard, draggedCard) {
+    if (!pileCard) return false;
     return !(
       (pileCard.props.className.match(/red-cards/) &&
         !draggedCard.className.match(/red-cards/)) ||
@@ -80,10 +85,21 @@ class WastePiles extends Component {
     );
   }
 
+  updatePile(pileNumeber) {
+    const pileId = "pile_" + pileNumeber;
+    const pileCards = this.state[pileId].slice();
+    pileCards.pop();
+    pileCards.pop();
+    let newCard = this.cards.pop();
+    pileCards.push(this.getCard(pileNumeber, newCard));
+    this.setState({ [pileId]: pileCards });
+  }
+
   isRankGreaterThanPileCard(pileCard, draggedCard) {
+    if (!pileCard) return true;
     const rankOfPileCard = +pileCard.props.id.split(" ")[0].split("_")[1];
     const rankOfDraggedCard = +draggedCard.id.split(" ")[0].split("_")[1];
-    return rankOfPileCard == (rankOfDraggedCard + 1);
+    return rankOfPileCard == rankOfDraggedCard + 1;
   }
 
   getCardNumberAndSymbol(card) {

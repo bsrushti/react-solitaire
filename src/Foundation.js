@@ -49,7 +49,8 @@ class Foundation extends Component {
   }
 
   drop(event) {
-    const card = document.getElementById(event.dataTransfer.getData("card"));
+    let cardId = event.dataTransfer.getData("card");
+    const card = document.getElementById(cardId);
     const { cardRank } = this.getCardRankAndSuit(card);
     if (!event.target.dataset.associate_foundation)
       event.target = event.target.parentElement;
@@ -60,6 +61,11 @@ class Foundation extends Component {
     let pileCard = this.getRecentStackedCard(foundationName, card);
     const key = foundationName;
     this.setState({ [key]: pileCard });
+    let pileNumber = cardId.split(" ")[1];
+    if (pileNumber) {
+      this.props.updateWastePile(pileNumber);
+      return;
+    }
     this.props.updateCard();
   }
 
